@@ -154,7 +154,7 @@ tasks {
         archiveFileName.set("${project.name}-${project.version}.jar")
 
         doLast {
-            archiveFile.get().asFile.copyTo(File("D:\\Server\\HmcTest\\plugins\\${project.name}-${project.version}.jar"), true)
+            archiveFile.get().asFile.copyTo(File("D:\\Server\\Paper1_21\\plugins\\${project.name}-${project.version}.jar"), true)
         }
     }
 
