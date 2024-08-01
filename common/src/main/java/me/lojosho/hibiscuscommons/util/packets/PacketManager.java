@@ -3,18 +3,18 @@ package me.lojosho.hibiscuscommons.util.packets;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.events.PacketContainer;
+import io.th0rgal.oraxen.shaded.playeranimator.api.utils.math.Quaternion;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import me.lojosho.hibiscuscommons.nms.NMSHandlers;
 import me.lojosho.hibiscuscommons.util.MessagesUtil;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.ItemDisplay;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,16 +59,21 @@ public class PacketManager {
 
     public static void sendItemDisplayMetadataPacket(
             final int entityId,
-            final float width,
-            final float height,
-            final float viewRange,
+            final Vector3f translation,
+            final Vector3f scale,
+            final Quaternionf rotationLeft,
+            final Quaternionf rotationRight,
+            final Display.Billboard billboard,
             final int blockLight,
             final int skyLight,
+            final float viewRange,
+            final float width,
+            final float height,
             final ItemDisplay.ItemDisplayTransform transform,
             final ItemStack itemStack,
             final List<Player> sendTo
     ) {
-        NMSHandlers.getHandler().itemDisplayMetadata(entityId, width, height, viewRange, blockLight, skyLight, transform, itemStack, sendTo);
+        NMSHandlers.getHandler().itemDisplayMetadata(entityId, translation, scale, rotationLeft, rotationRight, billboard, blockLight, skyLight, viewRange, width, height, transform, itemStack, sendTo);
     }
 
     public static void gamemodeChangePacket(
